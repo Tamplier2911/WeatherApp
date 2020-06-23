@@ -48,10 +48,15 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
+// server static assets
+app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
-console.log(path.join(__dirname, "uploads"));
-console.log(__filename);
+// html rendering engine
+// app.set("view engine", "pug");
+app.set("view engine", "hbs");
+
+// set directory, where views are stored
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/api/v1/home", (req, res, next) => {
   res.status(200).send(
@@ -67,25 +72,13 @@ app.get("/api/v1/home", (req, res, next) => {
 });
 
 app.get("/api/v1/help", (req, res, next) => {
-  res.status(200).send(
-    `<div>
-        <h1>Help is comming!</h1>
-        <div>
-            <a href="/api/v1/about">Read more?</a>
-        </div>
-    </div>`
-  );
+  const valuesObject = { title: "Help Page" };
+  res.render("help", valuesObject);
 });
 
 app.get("/api/v1/about", (req, res, next) => {
-  res.status(200).send(
-    `<div>
-        <h1>We are amazing!</h1>
-        <div>
-            <a href="/api/v1/home">Back to home?</a>
-        </div>
-    </div>`
-  );
+  const valuesObject = { title: "About Page" };
+  res.render("about", valuesObject);
 });
 
 app.get("/api/v1/weather", (req, res, next) => {
