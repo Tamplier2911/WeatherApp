@@ -2,14 +2,18 @@ const express = require("express");
 const path = require("path");
 const compression = require("compression");
 const cors = require("cors");
-// const enforce = require("express-sslify");
+const enforce = require("express-sslify");
 const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
 
 const xss = require("xss-clean");
 const helmet = require("helmet");
 
+// html engine
+const hbs = require("hbs");
+
 // routes
+const templateRouter = require("./routes/templateRoutes");
 
 const app = express();
 app.enable("trust proxy");
@@ -49,7 +53,7 @@ app.use((req, res, next) => {
 });
 
 // server static assets
-app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/static", express.static(path.join(__dirname, "static")));
 
 // html rendering engine
 // app.set("view engine", "pug");
@@ -58,39 +62,11 @@ app.set("view engine", "hbs");
 // set directory, where views are stored
 app.set("views", path.join(__dirname, "views"));
 
-app.get("/api/v1/home", (req, res, next) => {
-  res.status(200).send(
-    `<div>
-        <h1>Welcome!</h1>
-        <div>
-            <a href="/api/v1/help">Need help?</a>
-            <a href="/api/v1/weather">Interested in weather forecast?</a>
-            <a href="/">Back to Front-End?</a>
-        </div>
-    </div>`
-  );
-});
+// set directory, where partials are stored
+hbs.registerPartials(path.join(__dirname, "views/partials"));
 
-app.get("/api/v1/help", (req, res, next) => {
-  const valuesObject = { title: "Help Page" };
-  res.render("help", valuesObject);
-});
-
-app.get("/api/v1/about", (req, res, next) => {
-  const valuesObject = { title: "About Page" };
-  res.render("about", valuesObject);
-});
-
-app.get("/api/v1/weather", (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    forecast: {
-      place: "Avdiivka, Donetska Oblast, Ukraine",
-      temperature: 26,
-      feelslike: 28,
-    },
-  });
-});
+// routes
+app.use("/api/v1/template", templateRouter);
 
 if (process.env.NODE_ENV === "production") {
   // compress all response bodies
@@ -118,6 +94,12 @@ if (process.env.NODE_ENV === "production") {
   // on request to any route that is not covered - send index html
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+} else {
+  // on request to any route that is not covered - send 404 html
+  app.get("*", (req, res) => {
+    const valuesObject = { title: "404 - Not Found" };
+    res.render("404", valuesObject);
   });
 }
 

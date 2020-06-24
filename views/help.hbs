@@ -4,15 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <title>{{title}}</title>
 </head>
 
 <body>
     <div>
-        <h1>Help is comming!</h1>
+        {{>header}}
         <div>
-            <a href="/api/v1/about">Read more?</a>
+            <main class="container">
+                <div class="content">
+                    <h1>Help is comming!</h1>
+                    <div class="links-container">
+                        <a class="link" href="/api/v1/template/about">Read more?</a>
+                    </div>
+                </div>
+            </main>
         </div>
+        {{>footer}}
     </div>
 </body>
 

@@ -17,6 +17,7 @@ module.exports = {
     index: "index.html",
     port: 3000,
     proxy: {
+      "/static": "http://localhost:5000",
       "/api": "http://localhost:5000",
     },
   },
