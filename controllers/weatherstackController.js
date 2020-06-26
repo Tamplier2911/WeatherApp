@@ -1,16 +1,16 @@
 const request = require("postman-request");
 
-// WEATHER - query can as well consist of longtitude and latitude
+// WEATHER - query can as well consist of longitude and latitude
 
 /**
- * @function - fetch weather of certain position on earth, based on longtitude and latitude
- * @param {object} coordinatesObj - object of latitude and longtitude values
+ * @function - fetch weather of certain position on earth, based on longitude and latitude
+ * @param {object} coordinatesObj - object of latitude and longitude values
  * @param {function} cb - callback of what we want to happen once we get our data
  */
 
 exports.getWeatherByCoordinates = (coordinatesObj, cb) => {
-  const { latitude, longtitude } = coordinatesObj;
-  const weatherStack = `http://api.weatherstack.com/current?access_key=${process.env.WEATHER_STACK_API_KEY}&query=${latitude},${longtitude}&units=m`;
+  const { latitude, longitude } = coordinatesObj;
+  const weatherStack = `http://api.weatherstack.com/current?access_key=${process.env.WEATHER_STACK_API_KEY}&query=${latitude},${longitude}&units=m`;
 
   request(
     { uri: weatherStack, method: "GET", json: true },

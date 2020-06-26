@@ -44,10 +44,10 @@ exports.getCoordinatesByAddress = (queryObj, cb) => {
       // console.log(res.statusCode);
       const { features } = body;
       const place = features[0].place_name;
-      const longtitude = features[0].geometry.coordinates[0];
+      const longitude = features[0].geometry.coordinates[0];
       const latitude = features[0].geometry.coordinates[1];
 
-      return cb(null, { place, longtitude, latitude });
+      return cb(null, { place, longitude, latitude });
     }
   );
 };

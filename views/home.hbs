@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/manifest/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/manifest/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/manifest/favicon-16x16.png" />
+    <link rel="manifest" href="/static/manifest/site.webmanifest" />
+    <link rel="mask-icon" href="/static/manifest/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/static/css/styles.css">
     <title>{{title}}</title>
 </head>
@@ -16,13 +23,15 @@
                 <h1>Welcome!</h1>
                 <div class="links-container">
                     <a class="link" href="/api/v1/template/help">Need help?</a>
-                    <a class="link" href="/api/v1/template/weather">Interested in weather forecast?</a>
+                    <a class="link" href="/api/v1/template/weather" id="weather_link">Interested in weather
+                        forecast?</a>
                     <a class="link" href="/">Back to Front-End?</a>
                 </div>
             </div>
         </main>
         {{>footer}}
     </div>
+    <script src="/static/js/index.js"></script>
 </body>
 
 </html>

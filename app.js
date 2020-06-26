@@ -45,8 +45,8 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // CONSOLE LOG COOKIES ON EACH REQUEST
   if (process.env.NODE_ENV === "development") {
-    if (req.body) console.log(req.body);
-    if (req.cookies) console.log(req.cookies);
+    // if (req.body) console.log(req.body);
+    // if (req.cookies) console.log(req.cookies);
     console.log(req.requestTime);
   }
   next();

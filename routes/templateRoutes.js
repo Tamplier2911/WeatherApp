@@ -1,31 +1,19 @@
 const express = require("express");
+const {
+  getHomeTemplate,
+  getHelpTemplate,
+  getAboutTemplate,
+  getWeatherByAddress,
+} = require("../controllers/templatesController");
 
 const router = express.Router();
 
-router.get("/home", (req, res, next) => {
-  const valuesObject = { title: "Home Page" };
-  res.render("home", valuesObject);
-});
+router.get("/home", getHomeTemplate);
 
-router.get("/help", (req, res, next) => {
-  const valuesObject = { title: "Help Page" };
-  res.render("help", valuesObject);
-});
+router.get("/help", getHelpTemplate);
 
-router.get("/about", (req, res, next) => {
-  const valuesObject = { title: "About Page" };
-  res.render("about", valuesObject);
-});
+router.get("/about", getAboutTemplate);
 
-router.get("/weather", (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    forecast: {
-      place: "Avdiivka, Donetska Oblast, Ukraine",
-      temperature: 26,
-      feelslike: 28,
-    },
-  });
-});
+router.get("/weather", getWeatherByAddress);
 
 module.exports = router;
