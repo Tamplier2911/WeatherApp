@@ -1,6 +1,6 @@
 .img-wrap {
-  width: 25rem;
-  height: 25rem;
+  width: 20rem;
+  height: 20rem;
 }
 
 .img {
@@ -8,4 +8,26 @@
   height: 100%;
   display: block;
   object-fit: cover;
+}
+
+.pos1 {
+  position: absolute;
+  left: -5rem;
+}
+
+.pos2 {
+  position: absolute;
+  left: -5rem;
+  bottom: -2rem;
+}
+
+.pos3 {
+  position: absolute;
+  right: -5rem;
+}
+
+.pos4 {
+  position: absolute;
+  right: -4rem;
+  bottom: -2rem;
 }

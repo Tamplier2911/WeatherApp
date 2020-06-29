@@ -148,3 +148,74 @@ h1 {
   height: 100%;
   object-fit: cover;
 }
+
+.weather__imgwrap {
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 6rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.weather__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.weather__p {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+.weather__link {
+  margin-top: 5rem;
+}
+
+.weather__form {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+@media only screen and (max-width: 425px) {
+  .weather__form {
+    width: 100%;
+  }
+}
+
+.weather__input {
+  margin-bottom: 2rem;
+  border: none;
+  outline: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  color: black;
+
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.weather__button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+
+  border: 0.1px solid black;
+  background-color: white;
+
+  padding: 1rem;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.weather__button:hover {
+  background-color: black;
+  color: white;
+}

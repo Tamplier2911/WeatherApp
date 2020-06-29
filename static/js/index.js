@@ -1,18 +1,31 @@
 // console.log("Well, hello!");
 
+// elements
+const submit = document.getElementById("weather-submit");
+const input = document.getElementById("weather-input");
+
+if (submit && input) {
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    const address = input.value;
+
+    // similar behavior as clicking on a link
+    window.location.href = `http://localhost:5000/api/v1/template/weather/${address}`;
+  });
+}
+
+/*
+
 navigator.geolocation.getCurrentPosition(({ coords }) => {
   const { latitude, longitude } = coords;
   console.log(latitude, longitude);
-  /*
+  
   const link = document.getElementById("weather_link");
   link.setAttribute(
     "href",
     `/api/v1/template/weather?address=${latitude},${longitude}`
   );
-  */
+  
 });
 
-// Implement semi-similar interaction menu for client side
-// Implement navigation.geolocationgetCurrntPosition()
-// Get Current Position and provide a link to /api/v1/templates/weather
-// with address query string
+*/

@@ -16,37 +16,42 @@ exports.getAboutTemplate = (req, res, next) => {
   res.render("about", valuesObject);
 };
 
+exports.getWeatherTemplate = (req, res, next) => {
+  const valuesObject = { title: "Weather Page" };
+  res.render("weather", valuesObject);
+};
+
 exports.getWeatherByAddress = (req, res, next) => {
-  const { address } = req.query;
+  const { address } = req.params;
   const lang = req.acceptsLanguages()[0];
 
-  if (!address)
-    return res.status(404).send({
-      success: false,
-      error: "You must provide an address in order to get weather forecast.",
-    });
+  const valuesObject = { title: "Weather Page" };
+
+  if (!address) {
+    valuesObject.error =
+      "You must provide an address in order to get weather forecast.";
+    return res.render("weather", valuesObject);
+  }
 
   const processingData = { query: address, language: lang };
 
   // call for mapbox with provided query string to get coordinates
   getCoordinatesByAddress(processingData, (err, data) => {
-    if (err)
-      return res.status(404).json({
-        success: false,
-        error: err.name,
-        errorMessage: err.message,
-      });
+    if (err) {
+      valuesObject.error = err.name;
+      valuesObject.errorMessage = err.message;
+      return res.render("weather", valuesObject);
+    }
 
     const { longitude, latitude, place } = data;
 
     // provide coordinates to weatherstack to get weather forecast for this area
     getWeatherByCoordinates({ longitude, latitude }, (err, data) => {
-      if (err)
-        return res.status(404).json({
-          success: false,
-          error: err.name,
-          errorMessage: err.message,
-        });
+      if (err) {
+        valuesObject.error = err.name;
+        valuesObject.errorMessage = err.message;
+        return res.render("weather", valuesObject);
+      }
 
       const {
         current: {
@@ -57,16 +62,14 @@ exports.getWeatherByAddress = (req, res, next) => {
         },
       } = data;
 
-      res.status(200).json({
-        success: true,
-        forecast: {
-          place,
-          temperature,
-          feelslike,
-          weather_descriptions,
-          weather_icons,
-        },
-      });
+      valuesObject.title = "Forecast Page";
+      valuesObject.place = place;
+      valuesObject.temperature = temperature;
+      valuesObject.weather_icons = weather_icons;
+      valuesObject.desc = weather_descriptions;
+      valuesObject.feelslike = feelslike;
+
+      res.render("forecast", valuesObject);
     });
   });
 };
