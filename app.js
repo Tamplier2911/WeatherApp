@@ -14,6 +14,7 @@ const hbs = require("hbs");
 
 // routes
 const templateRouter = require("./routes/templateRoutes");
+const weatherRouter = require("./routes/weatherRouter");
 
 const app = express();
 app.enable("trust proxy");
@@ -67,6 +68,7 @@ hbs.registerPartials(path.join(__dirname, "views/partials"));
 
 // routes
 app.use("/api/v1/template", templateRouter);
+app.use("/api/v1/weather", weatherRouter);
 
 if (process.env.NODE_ENV === "production") {
   // compress all response bodies

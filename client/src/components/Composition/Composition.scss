@@ -14,6 +14,16 @@
     height: 50rem;
     background-color: black;
     border-radius: 60%;
+
+    @media only screen and (max-width: 768px) {
+      width: 40rem;
+      height: 40rem;
+    }
+
+    @media only screen and (max-width: 510px) {
+      width: 29.6rem;
+      height: 29.6rem;
+    }
   }
 
   &__smallCircle {
@@ -22,11 +32,21 @@
     height: 49.6rem;
     background-color: white;
     border-radius: 50%;
+
+    @media only screen and (max-width: 768px) {
+      width: 39.6rem;
+      height: 39.6rem;
+    }
+
+    @media only screen and (max-width: 510px) {
+      width: 28.6rem;
+      height: 28.6rem;
+    }
   }
 
   &__button {
     cursor: pointer;
-    background-color: black;
+    background-color: white;
     position: absolute;
     width: 10rem;
     height: 10rem;
@@ -36,19 +56,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     font-size: 2rem;
 
     border: black 1px solid;
 
     text-transform: uppercase;
 
-    transition: color 0.3s, background-color 0.3s;
+    transition: color 0.3s;
 
     &:hover {
       animation: pulse 2s infinite linear;
       color: black;
-      background-color: white;
     }
   }
 }

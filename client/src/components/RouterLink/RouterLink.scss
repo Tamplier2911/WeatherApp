@@ -1,0 +1,20 @@
+.link {
+  &__container {
+    margin-bottom: 1rem;
+  }
+
+  &__element {
+    &:link,
+    &:visited {
+      font-size: 2rem;
+      text-decoration: none;
+      color: var(--cl-font);
+      transition: color 0.3s;
+    }
+
+    &:active,
+    &:hover {
+      color: var(--cl-blue);
+    }
+  }
+}

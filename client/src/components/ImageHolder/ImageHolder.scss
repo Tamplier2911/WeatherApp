@@ -1,6 +1,16 @@
 .img-wrap {
   width: 20rem;
   height: 20rem;
+
+  @media only screen and (max-width: 768px) {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  @media only screen and (max-width: 510px) {
+    width: 10rem;
+    height: 10rem;
+  }
 }
 
 .img {
@@ -13,21 +23,39 @@
 .pos1 {
   position: absolute;
   left: -5rem;
+
+  @media only screen and (max-width: 510px) {
+    left: -2rem;
+  }
 }
 
 .pos2 {
   position: absolute;
   left: -5rem;
   bottom: -2rem;
+
+  @media only screen and (max-width: 510px) {
+    left: -2rem;
+    bottom: -2rem;
+  }
 }
 
 .pos3 {
   position: absolute;
   right: -5rem;
+
+  @media only screen and (max-width: 510px) {
+    right: -2rem;
+  }
 }
 
 .pos4 {
   position: absolute;
   right: -4rem;
   bottom: -2rem;
+
+  @media only screen and (max-width: 510px) {
+    right: -2rem;
+    bottom: -2rem;
+  }
 }

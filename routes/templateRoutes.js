@@ -6,7 +6,6 @@ const {
   getWeatherTemplate,
   getWeatherByAddress,
 } = require("../controllers/templatesController");
-const { route } = require("../app");
 
 const router = express.Router();
 
