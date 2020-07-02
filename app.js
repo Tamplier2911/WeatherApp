@@ -54,7 +54,9 @@ app.use((req, res, next) => {
 });
 
 // robots.txt
-app.use("/robots.txt", express.static(path.join(__dirname, "static/manifest")));
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./static/manifest/robots.txt"));
+});
 
 // server static assets
 app.use("/static", express.static(path.join(__dirname, "static")));
