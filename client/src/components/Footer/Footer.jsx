@@ -1,10 +1,15 @@
-import "./Footer.scss";
+// import "./Footer.scss";
 import React from "react";
 
+// sc
+import { FooterContainer, FooterWrapper } from "./Footer.styles.js";
+
 const Footer = () => (
-  <footer className="footer">
-    <div>Created by Artem Nikolaiev | &copy; 2020 All Rights Reserved</div>
-  </footer>
+  <FooterContainer>
+    <FooterWrapper>
+      Created by Artem Nikolaiev | &copy; 2020 All Rights Reserved
+    </FooterWrapper>
+  </FooterContainer>
 );
 
 export default Footer;

@@ -1,16 +1,23 @@
-import "./AboutPage.scss";
+// import "./AboutPage.scss";
 import React from "react";
 
 // components
 import RouterLink from "../../components/RouterLink/RouterLink.jsx";
 
+// sc
+import {
+  AboutPageSection,
+  AboutPageHeader,
+  AboutPageLinksContainer,
+} from "./AboutPage.styles.js";
+
 const AboutPage = () => (
-  <section className="aboutSection">
-    <h1 className="aboutSection__title">You are breathtaking!</h1>
-    <div className="aboutSection__container">
+  <AboutPageSection>
+    <AboutPageHeader>You are breathtaking!</AboutPageHeader>
+    <AboutPageLinksContainer>
       <RouterLink title="Back to home?" to="/home" />
-    </div>
-  </section>
+    </AboutPageLinksContainer>
+  </AboutPageSection>
 );
 
 export default AboutPage;

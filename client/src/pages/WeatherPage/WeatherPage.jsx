@@ -1,9 +1,23 @@
-import "./WeatherPage.scss";
+// import "./WeatherPage.scss";
 import React, { useState } from "react";
 import axios from "axios";
 
 // components
 import RouterLink from "../../components/RouterLink/RouterLink.jsx";
+
+// sc
+import {
+  WeatherPageSection,
+  WeatherPageHeader,
+  WeatherPageLinksContainer,
+  WeatherPageErrorParagraph,
+  WeatherPageImageWrapper,
+  WeatherPageImage,
+  WeatherPageDataParagraph,
+  WeatherPageForm,
+  WeaptherPageInput,
+  WeatherPageButton,
+} from "./WeatherPage.styles.js";
 
 const WeatherPage = () => {
   const [addressState, setAddressState] = useState({
@@ -18,16 +32,11 @@ const WeatherPage = () => {
     e.preventDefault();
 
     if (address) {
-      setAddressState({ ...addressState, requested: true });
       try {
         const res = await axios({
           method: "GET",
           url: `/api/v1/weather/${address}`,
         });
-        console.log(
-          res.data.data,
-          "place / temperature / weather_descriptions / weather_icons"
-        );
         const weather = {
           place: res.data.data.place,
           temperature: res.data.data.temperature,
@@ -38,9 +47,9 @@ const WeatherPage = () => {
         setAddressState({
           ...addressState,
           weather,
+          requested: true,
         });
       } catch (err) {
-        console.log(err.response.data, "error / errorMessage");
         const error = {
           name: err.response.data.error,
           message: err.response.data.errorMessage,
@@ -48,12 +57,11 @@ const WeatherPage = () => {
         setAddressState({
           ...addressState,
           error,
+          requested: true,
         });
       }
     }
   };
-
-  console.log("re-rendered");
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,13 +69,15 @@ const WeatherPage = () => {
   };
 
   return (
-    <section className="weatherSection">
-      <h1 className="weatherSection__title">Weather Forecast:</h1>
-      <div className="weatherSection__container">
+    <WeatherPageSection>
+      <WeatherPageHeader>Weather Forecast:</WeatherPageHeader>
+      <WeatherPageLinksContainer>
         {requested && error.name ? (
           <React.Fragment>
-            <p className="weatherSection__error">{error.name}</p>
-            <p className="weatherSection__error">{error.message}</p>
+            <WeatherPageErrorParagraph>{error.name}</WeatherPageErrorParagraph>
+            <WeatherPageErrorParagraph>
+              {error.message}
+            </WeatherPageErrorParagraph>
             <RouterLink
               title="Try again?"
               action={(e) => {
@@ -75,49 +85,43 @@ const WeatherPage = () => {
                 setAddressState({
                   ...addressState,
                   requested: false,
+                  address: "",
                   error: {},
                 });
               }}
               to="/"
+              margin={true}
             />
           </React.Fragment>
         ) : requested && weather.place ? (
           <React.Fragment>
-            <div className="weatherSection__imgwrap">
-              <img
+            <WeatherPageImageWrapper>
+              <WeatherPageImage
                 src={weather.weather_icons}
                 alt="weather icon"
-                className="weatherSection__img"
               />
-            </div>
-            <p className="weatherSection__data">{weather.place}</p>
-            <p className="weatherSection__data">
+            </WeatherPageImageWrapper>
+            <WeatherPageDataParagraph>{weather.place}</WeatherPageDataParagraph>
+            <WeatherPageDataParagraph>
               Сurrent temperature is {weather.temperature}°C and it feels like{" "}
               {weather.feelslike}°C. {weather.desc}.
-            </p>
+            </WeatherPageDataParagraph>
             <RouterLink margin={true} title="Back to home?" to="/home" />
           </React.Fragment>
         ) : (
-          <form
-            className="weatherSection__form"
-            autoComplete="off"
-            onSubmit={(e) => onFormSubmit(e)}
-          >
-            <input
-              className="weatherSection__input"
+          <WeatherPageForm autoComplete="off" onSubmit={(e) => onFormSubmit(e)}>
+            <WeaptherPageInput
               type="text"
               placeholder="Location or address..."
               onChange={(e) => onInputChange(e)}
               name="address"
               value={address}
             />
-            <button className="weatherSection__button" type="submit">
-              Submit
-            </button>
-          </form>
+            <WeatherPageButton type="submit">Submit</WeatherPageButton>
+          </WeatherPageForm>
         )}
-      </div>
-    </section>
+      </WeatherPageLinksContainer>
+    </WeatherPageSection>
   );
 };
 

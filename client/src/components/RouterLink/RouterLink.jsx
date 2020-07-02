@@ -1,25 +1,24 @@
 import React from "react";
-import "./RouterLink.scss";
+// import "./RouterLink.scss";
 
-import { Link } from "react-router-dom";
+// sc
+import {
+  RouterLinkContainer,
+  RouterAnchorLink,
+  RouterBrowserLink,
+} from "./RouterLink.styles.js";
 
 const RouterLink = ({ title, to, href, action, margin }) => {
   return href ? (
-    <div className={`link__container ${margin ? "weatherSection__link" : ""}`}>
-      <a className="link__element" href={href}>
-        {title}
-      </a>
-    </div>
+    <RouterLinkContainer margin={margin}>
+      <RouterAnchorLink href={href}>{title}</RouterAnchorLink>
+    </RouterLinkContainer>
   ) : (
-    <div className={`link__container ${margin ? "weatherSection__link" : ""}`}>
-      <Link
-        className="link__element"
-        to={to}
-        {...(action ? { onClick: action } : null)}
-      >
+    <RouterLinkContainer margin={margin}>
+      <RouterBrowserLink to={to} {...(action ? { onClick: action } : null)}>
         {title}
-      </Link>
-    </div>
+      </RouterBrowserLink>
+    </RouterLinkContainer>
   );
 };
 

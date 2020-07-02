@@ -1,12 +1,16 @@
-import "./LandingPage.scss";
+// import "./LandingPage.scss";
 import React from "react";
 
+// components
 import Composition from "../../components/Composition/Composition.jsx";
 
+// sc
+import { LandingPageSection } from "./LandingPage.styles.js";
+
 const LandingPage = () => (
-  <section className="landingSection">
+  <LandingPageSection>
     <Composition />
-  </section>
+  </LandingPageSection>
 );
 
 export default LandingPage;

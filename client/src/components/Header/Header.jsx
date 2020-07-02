@@ -1,17 +1,25 @@
-import "./Header.scss";
+// import "./Header.scss";
 import React from "react";
 
 // img
 import logoImage from "../../assets/png/cloud_logo.png";
 
+// sc
+import {
+  HeaderContainer,
+  HeaderWrapper,
+  HeaderImgWrap,
+  HeaderImage,
+} from "./Header.styles.js";
+
 const Header = () => (
-  <header className="header">
-    <div>
-      <div className="header__imgwrap">
-        <img className="header__img" src={logoImage} alt="cloudy logo" />
-      </div>
-    </div>
-  </header>
+  <HeaderContainer>
+    <HeaderWrapper>
+      <HeaderImgWrap>
+        <HeaderImage src={logoImage} alt="cloudy logo" />
+      </HeaderImgWrap>
+    </HeaderWrapper>
+  </HeaderContainer>
 );
 
 export default Header;

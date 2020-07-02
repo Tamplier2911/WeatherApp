@@ -10,7 +10,7 @@ if (submit && input) {
     const address = input.value;
 
     // similar behavior as clicking on a link
-    window.location.href = `http://localhost:5000/api/v1/template/weather/${address}`;
+    window.location.href = `/api/v1/template/weather/${address}`;
   });
 }
 

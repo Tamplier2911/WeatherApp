@@ -1,6 +1,5 @@
 import React from "react";
-import "./Composition.scss";
-import { Link } from "react-router-dom";
+// import "./Composition.scss";
 
 // components
 import ImageHolder from "../ImageHolder/ImageHolder.jsx";
@@ -11,21 +10,27 @@ import babelImg from "../../assets/png/babel.png";
 import webpackImg from "../../assets/png/webpack.png";
 import nodeImg from "../../assets/png/node.png";
 
+// sc
+import {
+  CompositionContainer,
+  CompositionBigCircle,
+  CompositionSmallCircle,
+  CompositionLink,
+} from "./Composition.styles.js";
+
 const Composition = () => {
   return (
-    <div className="composition">
-      <div className="composition__bigCircle">
-        <div className="composition__smallCircle">
+    <CompositionContainer>
+      <CompositionBigCircle>
+        <CompositionSmallCircle>
           <ImageHolder alt="React" pos={1} src={reactImg} />
           <ImageHolder alt="Babel" pos={2} src={babelImg} />
           <ImageHolder alt="Webpack" pos={3} src={webpackImg} />
           <ImageHolder alt="Node" pos={4} src={nodeImg} />
-        </div>
-      </div>
-      <Link className="composition__button" to="/home">
-        Home
-      </Link>
-    </div>
+        </CompositionSmallCircle>
+      </CompositionBigCircle>
+      <CompositionLink to="/home">Home</CompositionLink>
+    </CompositionContainer>
   );
 };
 
