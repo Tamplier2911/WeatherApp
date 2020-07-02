@@ -1,5 +1,6 @@
 const request = require("postman-request");
 
+// WEATHERSTACK URL - https://weatherstack.com/dashboard
 // WEATHER - query can as well consist of longitude and latitude
 
 /**

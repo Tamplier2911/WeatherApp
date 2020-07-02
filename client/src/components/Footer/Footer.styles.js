@@ -14,5 +14,5 @@ export const FooterWrapper = styled.div`
   text-align: center;
   max-width: 117rem;
   margin: 0 auto;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 `;
