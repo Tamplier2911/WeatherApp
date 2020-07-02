@@ -5,3 +5,5 @@ Client built from scratch using Webpack, Babel and React, fetchign weather forec
 Built as a webpack reference.
 
 ## Preview
+
+https://weathers-s.herokuapp.com/

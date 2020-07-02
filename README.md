@@ -6,3 +6,5 @@ Server, as well, renders simple templates, while serving static Client build on 
 Don't ask why, just had some fun.
 
 ## Preview
+
+https://weathers-s.herokuapp.com/api/v1/template/home

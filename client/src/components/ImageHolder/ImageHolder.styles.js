@@ -41,7 +41,6 @@ const position4 = css`
 `;
 
 const getRespectfulPosition = ({ pos }) => {
-  console.log(pos);
   if (pos === 1) return `${position1}`;
   if (pos === 2) return `${position2}`;
   if (pos === 3) return `${position3}`;
