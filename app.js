@@ -53,6 +53,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// robots.txt
+app.use("/robots.txt", express.static(path.join(__dirname, "static/manifest")));
+
 // server static assets
 app.use("/static", express.static(path.join(__dirname, "static")));
 
